@@ -1,21 +1,24 @@
 import * as THREE from "three"
+import WebGPURenderer from "three/addons/renderers/webgpu/WebGPURenderer.js"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 export default class App {
   constructor() {
     this._setupThreeJs();
-    this._setupCamera();
-    this._setupLight();
-    this._setupControls();
-    this._setupModel();
-    this._setupEvents();
   }
 
-  _setupThreeJs() {
+  async _setupThreeJs() {
     const divContainer = document.querySelector("#canvas-container");
     this._divContainer = divContainer;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const bWebGL = true;
+    let renderer;
+    if(bWebGL) {
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+    } else {
+      renderer = new WebGPURenderer({ antialias: true, forceWebGL: false });
+      await renderer.init();  
+    }
     renderer.setClearColor(new THREE.Color("#2c3e50"), 1);
     renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -24,6 +27,12 @@ export default class App {
     this._renderer = renderer;
     const scene = new THREE.Scene();
     this._scene = scene;
+
+    this._setupCamera();
+    this._setupLight();
+    this._setupControls();
+    this._setupModel();
+    this._setupEvents();
   }
 
   _setupCamera() {
