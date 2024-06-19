@@ -15,13 +15,15 @@ export default class App {
 
     console.log(`WebGPU Available: ${WebGPU.isAvailable()}, WebGL Available: ${WebGL.isWebGL2Available()}`)
     
-    const bWebGL = true;
+    const bWebGPU = true;
     let renderer;
-    if (bWebGL) {
-      renderer = new THREE.WebGLRenderer({ antialias: true });
-    } else {
+    if (bWebGPU) {
       renderer = new WebGPURenderer({ antialias: true, forceWebGL: false });
       await renderer.init();
+      console.log("WebGPU Mode");
+    } else {
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      console.log("WebGL Mode");
     }
     renderer.setClearColor(new THREE.Color("#2c3e50"), 1);
     renderer.setPixelRatio(window.devicePixelRatio);
