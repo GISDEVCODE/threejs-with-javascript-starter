@@ -6,10 +6,16 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 export default class App {
   constructor() {
-    this._setupThreeJs();
+    this._setupThreeJs(() => {
+      this._setupCamera();
+      this._setupLight();
+      this._setupControls();
+      this._setupModel();
+      this._setupEvents();
+    });
   }
 
-  async _setupThreeJs() {
+  async _setupThreeJs(onCompleted) {
     const divContainer = document.querySelector("#canvas-container");
     this._divContainer = divContainer;
 
@@ -34,11 +40,7 @@ export default class App {
     const scene = new THREE.Scene();
     this._scene = scene;
 
-    this._setupCamera();
-    this._setupLight();
-    this._setupControls();
-    this._setupModel();
-    this._setupEvents();
+    onCompleted();
   }
 
   _setupCamera() {
