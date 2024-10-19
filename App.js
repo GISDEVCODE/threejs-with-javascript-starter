@@ -1,7 +1,4 @@
 import * as THREE from "three"
-import WebGPURenderer from "three/addons/renderers/webgpu/WebGPURenderer.js"
-import WebGL from "three/addons/capabilities/WebGL.js"
-import WebGPU from "three/addons/capabilities/WebGPU.js"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 export default class App {
@@ -18,19 +15,7 @@ export default class App {
   async _setupThreeJs(onCompleted) {
     const divContainer = document.querySelector("#canvas-container");
     this._divContainer = divContainer;
-
-    console.log(`WebGPU Available: ${WebGPU.isAvailable()}, WebGL Available: ${WebGL.isWebGL2Available()}`)
-    
-    const bWebGPU = true;
-    let renderer;
-    if (bWebGPU) {
-      renderer = new WebGPURenderer({ antialias: true, forceWebGL: false });
-      await renderer.init();
-      console.log("WebGPU Mode");
-    } else {
-      renderer = new THREE.WebGLRenderer({ antialias: true });
-      console.log("WebGL Mode");
-    }
+    let renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(new THREE.Color("#2c3e50"), 1);
     renderer.setPixelRatio(window.devicePixelRatio);
 
