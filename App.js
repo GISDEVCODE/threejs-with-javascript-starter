@@ -3,13 +3,12 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 export default class App {
   constructor() {
-    this._setupThreeJs(() => {
-      this._setupCamera();
-      this._setupLight();
-      this._setupControls();
-      this._setupModel();
-      this._setupEvents();
-    });
+    this._setupThreeJs();
+    this._setupCamera();
+    this._setupLight();
+    this._setupControls();
+    this._setupModel();
+    this._setupEvents();
   }
 
   async _setupThreeJs(onCompleted) {
