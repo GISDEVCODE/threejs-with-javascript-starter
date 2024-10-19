@@ -23,8 +23,6 @@ export default class App {
     this._renderer = renderer;
     const scene = new THREE.Scene();
     this._scene = scene;
-
-    onCompleted();
   }
 
   _setupCamera() {
