@@ -11,8 +11,8 @@ export default class App {
     this._setupEvents();
   }
 
-  async _setupThreeJs(onCompleted) {
-    const divContainer = document.querySelector("#canvas-container");
+  async _setupThreeJs() {
+    const divContainer = document.querySelector("#app");
     this._divContainer = divContainer;
     let renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(new THREE.Color("#2c3e50"), 1);
