@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+import { OrbitControls } from "three/addons/Addons.js"
 
 export default class App {
   constructor() {
@@ -11,7 +11,7 @@ export default class App {
     this._setupEvents();
   }
 
-  async _setupThreeJs() {
+  _setupThreeJs() {
     const divContainer = document.querySelector("#app");
     this._divContainer = divContainer;
     let renderer = new THREE.WebGLRenderer({ antialias: true });
