@@ -51,7 +51,8 @@ export default class App {
   }
 
   _setupControls() {
-    this._orbitControls = new OrbitControls(this._camera, this._divContainer);
+    const orbitControls = new OrbitControls(this._camera, this._divContainer);
+    this._orbitControls = orbitControls;
   }
 
   _setupEvents() {
