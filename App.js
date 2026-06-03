@@ -1,5 +1,7 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/Addons.js"
+import { LightProbeGrid } from 'three/addons/lighting/LightProbeGrid.js';
+import { LightProbeGridHelper } from 'three/addons/helpers/LightProbeGridHelper.js';
 
 export default class App {
   constructor() {
@@ -59,12 +61,14 @@ export default class App {
     window.onresize = this.resize.bind(this);
     this.resize();
 
-    this._clock = new THREE.Clock()
+    this._timer = new THREE.Timer()
+    this._timer.connect(document);
     requestAnimationFrame(this.render.bind(this));
   }
 
   update() {
-    const delta = this._clock.getDelta();
+    this._timer.update();
+    const delta = this._timer.getDelta();
 
     this._mesh.rotation.y += delta;
 
