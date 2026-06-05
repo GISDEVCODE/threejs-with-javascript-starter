@@ -1,7 +1,5 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/Addons.js"
-import { LightProbeGrid } from 'three/addons/lighting/LightProbeGrid.js';
-import { LightProbeGridHelper } from 'three/addons/helpers/LightProbeGridHelper.js';
 
 export default class App {
   constructor() {
